@@ -1,0 +1,2 @@
+# Minilex
+English-Russian flashcards
