@@ -8,7 +8,7 @@ cursor = conn.cursor()
 cursor.execute('SELECT max(id) FROM minilex')
 id_max = cursor.fetchone()
 		
-def NewWord():
+def new_word():
 	
 	#Проверка количества оставшихся для изучения слов.
 	cursor.execute('SELECT COUNT(*) FROM minilex WHERE score < 2')
@@ -67,7 +67,7 @@ def Checking():
 def ScorePlus():
     cursor.execute('UPDATE minilex SET score = score + 1 WHERE id = ?', (id_rand,))
     conn.commit()
-    NewWord()
+    new_word()
 
 #Создание полей и кнопок.
 window = Tk()
@@ -90,9 +90,9 @@ lbl_rus.pack(pady = 5)
 btn_check = Button(bottom_frame, text='Check', font=(24), bg='yellow', command=Checking)
 
 btn_yes = Button(bottom_frame, text='Yes', font=(24), bg='green', command = ScorePlus)
-btn_no = Button(bottom_frame, text='No', font=(24), bg='red', command = NewWord)
+btn_no = Button(bottom_frame, text='No', font=(24), bg='red', command = new_word)
 
 #Запуск карточек.
-NewWord()
+new_word()
 
 window=mainloop()
